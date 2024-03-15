@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@400;700&display=swap');
+
+
 .App {
   text-align: center;
 }
@@ -11,4 +14,10 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+}
+
+
+h1 {
+  font-family: 'Open+Sans', sans-serif;
+  font-size: 100px;
 }
