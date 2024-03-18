@@ -83,7 +83,7 @@ function App() {
           </div>
         ) : (
           <div>
-            {isRunning && <h1>{words[currentWordIndex]}</h1>}
+            {isRunning && !isAllWordsShown && <h1>{words[currentWordIndex]}</h1>}
             <p>{!isRunning && startComponent}</p>
             {formatTime()}
             {isAllWordsShown && <p>* All words are displayed...</p>}
