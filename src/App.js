@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
-// import endSound from "./end-sound.mp3"; // 終了音のファイルをインポート
-import originalWords from "./words.json"; // オリジナルのワード配列をインポート
+import endSound from "./end-sound.mp3"; // Importing end sound files.
+import originalWords from "./words.json"; // Import original word sequences.
 
-// 配列をシャッフルする関数（Fisher-Yatesシャッフルアルゴリズム）
+// Functions for shuffling arrays（Fisher-Yates shuffle algorithm)
 function shuffleArray(array) {
-  const shuffledArray = array.slice(); // 配列をコピー
+  const shuffledArray = array.slice(); // Copy array
   for (let i = shuffledArray.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]];
@@ -14,8 +14,8 @@ function shuffleArray(array) {
 }
 
 function App() {
-  const TIMER_SECONDS = 20;
-  const [words, setWords] = useState(shuffleArray(originalWords)); // シャッフルされたワード配列
+  const TIMER_SECONDS = 180;
+  const [words, setWords] = useState(shuffleArray(originalWords)); // Shuffled word sequence
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const [timer, setTimer] = useState(TIMER_SECONDS); // 20秒でデモ
   const [isRunning, setIsRunning] = useState(false);
@@ -25,17 +25,16 @@ function App() {
   useEffect(() => {
     let countdown;
     if (isRunning && timer > 0) {
-      // タイマーを開始
+      // start the timer
       countdown = setInterval(() => {
         setTimer((prevTimer) => prevTimer - 1);
       }, 1000);
     } else if (timer === 0) {
-      // タイマーが0になったら停止
+      // Stops when the timer is zero.
       setIsRunning(false);
       setIsEnded(true);
 
-      // 終了音を再生
-      // new Audio(endSound).play();
+      new Audio(endSound).play();
     }
 
     // コンポーネントのアンマウント時にタイマーをクリア
@@ -87,7 +86,7 @@ function App() {
             {isRunning && <h1>{words[currentWordIndex]}</h1>}
             <p>{!isRunning && startComponent}</p>
             {formatTime()}
-            {/* {isAllWordsShown && <p>*全てのワードを表示しました！</p>} */}
+            {isAllWordsShown && <p>* All words are displayed...</p>}
           </div>
         )}
       </header>
