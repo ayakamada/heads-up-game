@@ -83,7 +83,7 @@ function App() {
       <header className="App-header">
         {isEnded ? (
           <div>
-            <h2>時間切れです！</h2>
+            <h2>Time is up!</h2>
           </div>
         ) : (
           <div>
@@ -100,7 +100,7 @@ function App() {
 
 const startComponent = (
   <span>
-    Press "SPACE" key. <br /> Timer srart/stop by "S" key
+    'SPACE' change words. <br /> 'S' srart/stop the timer.
   </span>
 );
 
