@@ -14,10 +14,10 @@ function shuffleArray(array) {
 }
 
 function App() {
-  const TIMER_SECONDS = 180;
+  const TIMER_SECONDS = 300;
   const [words, setWords] = useState(shuffleArray(originalWords)); // Shuffled word sequence
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
-  const [timer, setTimer] = useState(TIMER_SECONDS); // 20秒でデモ
+  const [timer, setTimer] = useState(TIMER_SECONDS);
   const [isRunning, setIsRunning] = useState(false);
   const [isEnded, setIsEnded] = useState(false);
   const [isAllWordsShown, setIsAllWordsShown] = useState(false);
@@ -44,7 +44,12 @@ function App() {
   useEffect(() => {
     // Enterキーでタイマーをスタート/ストップまたはワードを切り替えるイベントリスナーを追加
     const handleKeyDown = (event) => {
-      if (event.key === "Enter") {
+      // Spaceキーでタイマーをスタート/ストップ
+      if (event.key === "s") {
+        setIsRunning((prevIsRunning) => !prevIsRunning);
+      }
+
+      if (event.key === " ") {
         if (!isRunning && !isEnded) {
           setIsRunning(true);
           setTimer(TIMER_SECONDS); // タイマーをリセット
@@ -79,13 +84,12 @@ function App() {
         {isEnded ? (
           <div>
             <h2>時間切れです！</h2>
-            {/* ここに終了画面の内容を追加 */}
           </div>
         ) : (
           <div>
             {isRunning && !isAllWordsShown && <h1>{words[currentWordIndex]}</h1>}
             <p>{!isRunning && startComponent}</p>
-            {formatTime()}
+            <h3>{formatTime()}</h3>
             {isAllWordsShown && <p>* All words are displayed...</p>}
           </div>
         )}
@@ -94,6 +98,10 @@ function App() {
   );
 }
 
-const startComponent = <span>Just Press the Enter key</span>;
+const startComponent = (
+  <span>
+    Press "SPACE" key. <br /> Timer srart/stop by "S" key
+  </span>
+);
 
 export default App;
