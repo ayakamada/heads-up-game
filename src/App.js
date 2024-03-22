@@ -100,7 +100,7 @@ function App() {
 
 const startComponent = (
   <span>
-    'SPACE' change words. <br /> 'S' start/stop the timer.
+    Press 'SPACE' to change words. <br /> Press 'S' to start/pause the timer.
   </span>
 );
 
